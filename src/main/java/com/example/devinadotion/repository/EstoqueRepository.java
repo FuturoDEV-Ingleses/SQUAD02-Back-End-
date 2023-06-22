@@ -1,8 +1,9 @@
 package com.example.devinadotion.repository;
 
-import com.example.devinadotion.model.Estoque;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EstoqueRepository extends JpaRepository <Estoque, Long> {
+import com.example.devinadotion.models.EstoqueModel;
+
+public interface EstoqueRepository extends JpaRepository <EstoqueModel, Long> {
 
 }

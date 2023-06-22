@@ -1,4 +1,4 @@
-package com.example.devinadotion.model;
+package com.example.devinadotion.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Usuario {
+public class UsuarioModel {
 
 
     @Id

@@ -1,20 +1,20 @@
-package com.example.devinadotion.model;
+package com.example.devinadotion.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-public class Estoque {
+public class EstoqueModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-       @ManyToOne
-       @JoinColumn(name = "armazem_id", nullable = false)
-       private Armazem armazem;
+// RELAÇÃO DAS TABELAS NO SQL, NÃO FIZ ESSA PARTE>>> por isso deixarei comentado
+    //    @ManyToOne
+    //    @JoinColumn(name = "armazem_id", nullable = false)
+    //    private Armazem armazem;
 
     @Column(length = 20, nullable = false)
     private String produto;
