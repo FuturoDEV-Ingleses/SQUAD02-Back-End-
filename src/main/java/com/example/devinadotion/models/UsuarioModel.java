@@ -19,6 +19,4 @@ public class UsuarioModel {
 
     @Column(length = 30 , nullable = false)
     private String senha;
-
-
 }

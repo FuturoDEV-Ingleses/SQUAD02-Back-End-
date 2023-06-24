@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class ArmazemController {
     private final ArmazemService armazemService;
 
-    @Autowired
     public ArmazemController(ArmazemService armazemService) {
         this.armazemService = armazemService;
     }
