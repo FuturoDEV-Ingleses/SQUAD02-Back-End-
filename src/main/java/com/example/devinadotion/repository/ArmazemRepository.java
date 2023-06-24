@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArmazemRepository extends JpaRepository<ArmazemModel, Long> {
 
-   boolean existsByArmazemNome(String armazemNome);
+ //  boolean existsByArmazemNome(String armazemNome);
 }

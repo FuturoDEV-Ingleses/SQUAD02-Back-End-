@@ -3,7 +3,7 @@ package com.example.devinadotion.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+@Entity(name="produto")
 @Data
 public class ProdutoModel {
     @Id
