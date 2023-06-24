@@ -1,8 +1,9 @@
 package com.example.devinadotion.repository;
 
-import com.example.devinadotion.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+import com.example.devinadotion.models.UsuarioModel;
+
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
 }
