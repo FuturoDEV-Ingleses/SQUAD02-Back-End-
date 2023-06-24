@@ -1,32 +1,18 @@
 package com.example.devinadotion.services;
 
+import com.example.devinadotion.dtos.CadastrarProdutoDTO;
+import com.example.devinadotion.dtos.ProdutoDTO;
 import com.example.devinadotion.models.ProdutoModel;
-import com.example.devinadotion.repository.ProdutoRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-@Service
-public class ProdutoService {
+public interface ProdutoService {
 
-    final ProdutoRepository produtoRepository;
+        ProdutoModel cadastrarProduto(CadastrarProdutoDTO cadastrarProdutoDTO) throws Exception;
 
-    public ProdutoService(ProdutoRepository produtoRepository) {
-        this.produtoRepository = produtoRepository;
+        Optional<ProdutoModel> pesquisarProduto(ProdutoDTO produtoDTO) throws Exception;
+
+        List<ProdutoModel> listarProdutos() throws Exception;
     }
 
-    @Transactional
-    public Object save(ProdutoModel produtoModel) { return produtoRepository.save(produtoModel);}
-
-    public boolean existsByProduto(String produtoNome){ return produtoRepository.existsByProdutoNome(produtoNome);}
-
-    public List<ProdutoModel> findAll() {return produtoRepository.findAll();}
-
-    public Optional<ProdutoModel> findById(UUID id) {return produtoRepository.findById(id);}
-
-    @Transactional
-    public void delete(ProdutoModel produtoModel) {produtoRepository.delete(produtoModel);}
-}

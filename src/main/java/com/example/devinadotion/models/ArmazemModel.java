@@ -1,54 +1,23 @@
 package com.example.devinadotion.models;
 
+import com.example.devinadotion.enums.Animal;
 import jakarta.persistence.*;
-import java.io.Serializable;
-import java.util.UUID;
+import lombok.Data;
 
-//Neli fez ao invés de Entity, usou @Data. Não sei dizer qual melhor opção. Se for usar @Data tem que importar ali em cima
 @Entity
-@Table(name= "TB_ARMAZEM")
-public class ArmazemModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@Data
+public class ArmazemModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    @Column(nullable = false, unique = true, length = 10)
-    private String nomeArmazem;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 30, nullable = false)
+    private String nome;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private boolean dogOrCat;
-    @Column(nullable = false)
-    private boolean situacaoArmazem;
+    private Animal animal;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getNomeArmazem() {
-        return nomeArmazem;
-    }
-
-    public void setNomeArmazem(String nomeArmazem) {
-        this.nomeArmazem = nomeArmazem;
-    }
-
-    public boolean isDogOrCat() {
-        return dogOrCat;
-    }
-
-    public void setDogOrCat(boolean dogOrCat) {
-        this.dogOrCat = dogOrCat;
-    }
-
-    public boolean isSituacaoArmazem() {
-        return situacaoArmazem;
-    }
-
-    public void setSituacaoArmazem(boolean situacaoArmazem) {
-        this.situacaoArmazem = situacaoArmazem;
-    }
+    @Column(columnDefinition = "boolean default false")
+    private boolean ativo;
 }

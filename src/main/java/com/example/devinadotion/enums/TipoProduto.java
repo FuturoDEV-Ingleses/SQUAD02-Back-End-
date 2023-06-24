@@ -1,7 +1,8 @@
 package com.example.devinadotion.enums;
 
-public enum Produto {
+public enum TipoProduto {
     RACAO,
     ANTIPARASITARIO,
-    ANTIPULGAS
+    ANTIPULGAS,
+    ANIMAL
 }
