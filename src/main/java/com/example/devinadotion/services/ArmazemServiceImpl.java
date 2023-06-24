@@ -21,7 +21,6 @@ public class ArmazemServiceImpl implements ArmazemService {
         this.estoqueService = estoqueService;
     }
 
-    //criterio8
     @Override
     public ArmazemModel cadastrarArmazem(ArmazemDTO armazemDTO) {
         ArmazemModel armazem = new ArmazemModel();
@@ -32,7 +31,6 @@ public class ArmazemServiceImpl implements ArmazemService {
         return armazemRepository.save(armazem);
     }
 
-    //criterio9
     @Override
     public ArmazemModel editarArmazem(Long Id, ArmazemDTO armazemDTO) throws Exception {
         Optional<ArmazemModel> optionalArmazem = armazemRepository.findById(Id);
@@ -46,13 +44,10 @@ public class ArmazemServiceImpl implements ArmazemService {
 
         return armazemRepository.save(armazem);
     }
-
-    //criterio 10
     public void desativar(Long id) throws Exception {
         Optional<ArmazemModel> optionalArmazem = armazemRepository.findById(id);
         ArmazemModel armazem = optionalArmazem.orElseThrow(() -> new Exception("Armazém não encontrado."));
 
-        // Verificar se existem produtos alocados a este armazém
         List<EstoqueModel> estoques = this.estoqueService.listarEstoquePorArmazemId(id);
         if (estoques.size() > 0 || !armazem.isAtivo()) {
             throw new Exception("Não é possível excluir o armazém com produtos alocados.");

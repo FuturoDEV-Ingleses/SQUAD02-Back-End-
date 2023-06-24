@@ -26,8 +26,8 @@ public class UsuarioController {
     @PostMapping(value = "/cadastro")
     public ResponseEntity cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         try {
-            UsuarioModel usuario = usuarioService.cadastrarUsuario(usuarioDTO);
-            return ResponseEntity.ok(usuario);
+            UsuarioModel usuarioModel = usuarioService.cadastrarUsuario(usuarioDTO);
+            return ResponseEntity.ok(usuarioModel);
         } catch (HttpException e) {
             return ResponseEntity
                     .status(e.getStatus())

@@ -4,8 +4,9 @@ import com.example.devinadotion.enums.Animal;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+
 @Data
+@Entity(name="armazem")
 public class ArmazemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
