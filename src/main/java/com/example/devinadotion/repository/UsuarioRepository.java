@@ -6,4 +6,7 @@ import com.example.devinadotion.models.UsuarioModel;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
+
+    boolean existsByEmail(String email);
+
 }
