@@ -26,3 +26,5 @@ CREATE TABLE produto(
  tipo varchar(15) NOT NULL
 );
 
+SELECT tipo, categoria, animal, SUM(quantidade) AS quantidade FROM estoque e INNER JOIN produto p ON p.id = e.produto_id GROUP BY tipo, categoria, animal;
+

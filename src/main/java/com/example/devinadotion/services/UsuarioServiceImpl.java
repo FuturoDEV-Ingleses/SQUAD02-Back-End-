@@ -1,15 +1,14 @@
 package com.example.devinadotion.services;
 
 import com.example.devinadotion.Exceptions.EmailJaCadastradoException;
-import com.example.devinadotion.Exceptions.EmailOuSenhaIncoretosException;
 import com.example.devinadotion.dtos.UsuarioDTO;
 import com.example.devinadotion.models.UsuarioModel;
 import com.example.devinadotion.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -37,26 +36,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         return usuarioRepository.save(usuario);
     }
+
     @Override
-    public UsuarioModel loginUsuario(String email, String senha) throws EmailOuSenhaIncoretosException {
+    public UsuarioModel loginUsuario(String email, String senha) throws Exception {
         if (email.isEmpty() || senha.isEmpty()) {
-            throw new EmailOuSenhaIncoretosException();
+            throw new Exception("E-mail e senha são obrigatórios para efetuar o login.");
         }
 
         Optional<UsuarioModel> usuarioResponse = usuarioRepository.findByEmail(email);
         if (usuarioResponse.isEmpty()) {
-            throw new EmailOuSenhaIncoretosException();
+            throw new Exception("E-mail ou senha incorretos.");
         }
 
         UsuarioModel usuario = usuarioResponse.get();
 
-        if(!usuario.getSenha().equals(senha)) {
-            throw new EmailOuSenhaIncoretosException();
+        if (!usuario.getSenha().equals(senha)) {
+            throw new Exception("E-mail ou senha incorretos.");
         }
 
         return usuario;
     }
-
 }
+
 
 
