@@ -22,11 +22,11 @@ public class EstoqueController {
         this.estoqueService = estoqueService;
     }
 
-  /*  @GetMapping("/relatorio")
+    @GetMapping("/relatorio")
     public ResponseEntity<List<EstoqueDashboardDTO>> gerarRelatorioEstoque() throws Exception {
         List<EstoqueDashboardDTO> estoque = estoqueService.listarRelatorioEstoque();
         return ResponseEntity.ok(estoque);
-    }*/
+    }
 
     @GetMapping
     public ResponseEntity<List<EstoqueModel>> buscarTodos() {

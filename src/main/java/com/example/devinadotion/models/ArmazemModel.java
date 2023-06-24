@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 @Data
-@Entity(name="armazem")
+@Entity(name = "armazem")
 public class ArmazemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
