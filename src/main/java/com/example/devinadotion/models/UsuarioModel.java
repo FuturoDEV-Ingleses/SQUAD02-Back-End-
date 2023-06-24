@@ -3,7 +3,6 @@ package com.example.devinadotion.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 @Data
 @Entity
 public class UsuarioModel {

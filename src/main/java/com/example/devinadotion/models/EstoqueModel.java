@@ -7,19 +7,21 @@ import lombok.Data;
 @Entity
 public class EstoqueModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 8, nullable = false)
-    private String animal;
+        @Column(insertable = false, updatable = false, name = "armazem_id")
+        private Long armazemId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 7, nullable = false)
-    private String categoria;
+        @ManyToOne
+        @JoinColumn(name = "armazem_id", nullable = false)
+        private ArmazemModel armazem;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 15, nullable = false)
-    private String tipo;
-}
+        @ManyToOne
+        @JoinColumn(name = "produto_id", nullable = false)
+        private ProdutoModel produto;
+
+        @Column(nullable = false)
+        private Integer quantidade;
+    }
