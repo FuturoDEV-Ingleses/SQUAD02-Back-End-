@@ -1,15 +1,18 @@
 package com.example.devinadotion.dtos;
 
+import com.example.devinadotion.enums.Animal;
+import com.example.devinadotion.enums.Categoria;
+import com.example.devinadotion.enums.TipoProduto;
 import lombok.Data;
 
 @Data
 public class CadastrarProdutoDTO {
     // Cachorro ou Gato
-    private String animal;
+    private Animal animal;
 
     // Filhote ou Adulto
-    private String categoria;
+    private Categoria categoria;
 
     // Racao, Antiparasitario, Antipulgas
-    private String tipo;
+    private TipoProduto tipo;
 }

@@ -2,13 +2,15 @@ package com.example.devinadotion.services;
 
 import com.example.devinadotion.dtos.CadastrarProdutoDTO;
 import com.example.devinadotion.dtos.ProdutoDTO;
+import com.example.devinadotion.enums.Animal;
+import com.example.devinadotion.enums.Categoria;
+import com.example.devinadotion.enums.TipoProduto;
 import com.example.devinadotion.models.ProdutoModel;
 import com.example.devinadotion.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,63 +25,54 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoModel cadastrarProduto(CadastrarProdutoDTO cadastrarProduto) throws Exception {
-        String[] categorias = new String[]{"adulto", "filhote"};
-        String[] animais = new String[] {"cachorro", "gato"};
-        String[] tipos = new String[] {"racao", "antiparasitario", "antipulgas", "animal"};
 
-        String tipo = cadastrarProduto.getTipo();
-
-        if(tipo.isEmpty() || !Arrays.asList(tipos).contains(tipo)) {
-            throw new Exception("Tipo invalido.");
+        String tipoStr = String.valueOf(cadastrarProduto.getTipo());
+        if (tipoStr == null || !TipoProduto.isValidEnumValue(tipoStr)) {
+            throw new Exception("Tipo inválido.");
         }
+        TipoProduto tipo = TipoProduto.fromValue(tipoStr);
 
-        String animal = cadastrarProduto.getAnimal();
-
-        if(animal.isEmpty() || !Arrays.asList(animais).contains(animal)) {
-            throw new Exception("Animal invalido.");
+        String animalStr = String.valueOf(cadastrarProduto.getAnimal());
+        if (animalStr == null || !Animal.isValidEnumValue(animalStr)) {
+            throw new Exception("Animal inválido.");
         }
+        Animal animal = Animal.fromValue(animalStr);
 
-        String categoria = cadastrarProduto.getCategoria();
-
-        if(categoria.isEmpty() || !Arrays.asList(categorias).contains(categoria)) {
-            throw new Exception("Categoria invalido.");
+        String categoriaStr = String.valueOf(cadastrarProduto.getCategoria());
+        if (categoriaStr == null || !Categoria.isValidEnumValue(categoriaStr)) {
+            throw new Exception("Categoria inválida.");
         }
+        Categoria categoria = Categoria.fromValue(categoriaStr);
+
 
         ProdutoModel produto = new ProdutoModel();
         produto.setTipo(tipo);
         produto.setAnimal(animal);
         produto.setCategoria(categoria);
-
-        return this.produtoRepository.save(produto);
+        return produtoRepository.save(produto);
     }
 
     @Override
     public Optional<ProdutoModel> pesquisarProduto(ProdutoDTO produtoDTO) {
-        String categoria = produtoDTO.getCategoria();
-        String tipo = produtoDTO.getTipo();
-        String animal = produtoDTO.getAnimal();
 
-        ProdutoModel teste = new ProdutoModel();
-
-        if(!categoria.isEmpty()) {
-            teste.setCategoria(categoria);
+        ProdutoModel exemplo = new ProdutoModel();
+        if (produtoDTO.getTipo() != null) {
+            exemplo.setTipo(TipoProduto.fromValue(produtoDTO.getTipo()));
         }
-
-        if(!tipo.isEmpty()) {
-            teste.setTipo(tipo);
+        if (produtoDTO.getAnimal() != null) {
+            exemplo.setAnimal(Animal.fromValue(produtoDTO.getAnimal()));
         }
-
-        if(!animal.isEmpty()) {
-            teste.setAnimal(animal);
+        if (produtoDTO.getCategoria() != null) {
+            exemplo.setCategoria(Categoria.fromValue(produtoDTO.getCategoria()));
         }
-
-        Example<ProdutoModel> example = Example.of(teste);
-
-        return this.produtoRepository.findOne(example);
+        
+        Example<ProdutoModel> example = Example.of(exemplo);
+        
+        return produtoRepository.findOne(example);
     }
 
     @Override
     public List<ProdutoModel> listarProdutos() throws Exception {
-        return List.of(new ProdutoModel[0]);
+        return produtoRepository.findAll();
     }
 }
