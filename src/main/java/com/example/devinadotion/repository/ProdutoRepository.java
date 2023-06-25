@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long> {
-
-
-  //  boolean existsByProdutoNome(String produtoNome);
+   // boolean existsByProdutoNome(String produtoNome);
 }
 
