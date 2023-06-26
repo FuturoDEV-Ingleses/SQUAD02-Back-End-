@@ -28,12 +28,11 @@ public class ProdutoController {
     }
 
     @PostMapping("cadastrar")
-    private ResponseEntity cadastrarProduto(@RequestBody ProdutoDTO produtoDTO){
+    public ResponseEntity post(@RequestBody ProdutoModel produto) {
         try {
-            ProdutoModel produto = this.produtoService.cadastrarProduto(produtoDTO);
-            return ResponseEntity.ok(produto);
-        }catch (Exception e) {
-            return ResponseEntity.status(400).body("");
+            return ResponseEntity.ok(produtoService.cadastrarProduto((ProdutoDTO) produto));
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
         }
     }
 

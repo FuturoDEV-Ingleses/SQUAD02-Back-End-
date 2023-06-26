@@ -37,7 +37,7 @@ public class EstoqueServiceImpl implements EstoqueService{
         EstoqueModel estoque = estoqueRepository.findById(id)
                 .orElseThrow(() -> new Exception("Item do estoque não encontrado"));
 
-       // estoque.setProduto(estoqueDTO.getProduto());
+        estoque.setProduto(estoqueDTO.getProduto());
         estoque.setQuantidade(estoqueDTO.getQuantidade());
 
         return estoqueRepository.save(estoque);
