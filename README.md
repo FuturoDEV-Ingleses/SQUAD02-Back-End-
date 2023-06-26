@@ -1,4 +1,4 @@
-# Squad02-FrontEnd
+# Squad02-Back-End
 Projeto Avaliativo Senai-Lab365.
 ## Sobre o projeto
 Aplicação para controle de estoque de materiais para ongs, desenvolvido em grupo.
