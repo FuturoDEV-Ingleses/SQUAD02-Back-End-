@@ -1,6 +1,5 @@
 package com.example.devinadotion.controllers;
 
-import com.example.devinadotion.dtos.CadastrarProdutoDTO;
 import com.example.devinadotion.dtos.ProdutoDTO;
 import com.example.devinadotion.models.ProdutoModel;
 import com.example.devinadotion.services.ProdutoService;
@@ -23,16 +22,24 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
-        @PostMapping("/cadastrar")
-        public ResponseEntity<ProdutoModel> cadastrarProduto(@RequestBody CadastrarProdutoDTO cadastrarProduto) {
-            try {
-                ProdutoModel produto = produtoService.cadastrarProduto(cadastrarProduto);
-                return ResponseEntity.ok(produto);
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
+    @GetMapping
+    public List<ProdutoModel> get() throws Exception {
+        return produtoService.buscarTodos();
+    }
+
+    @PostMapping("cadastrar")
+    private ResponseEntity cadastrarProduto(@RequestBody ProdutoDTO produtoDTO){
+        try {
+            ProdutoModel produto = this.produtoService.cadastrarProduto(produtoDTO);
+            return ResponseEntity.ok(produto);
+        }catch (Exception e) {
+            return ResponseEntity.status(400).body("");
         }
-    @PostMapping("/pesquisar")
+    }
+
+
+
+    @GetMapping("/pesquisar")
     public ResponseEntity<Optional<ProdutoModel>> pesquisarProduto(@RequestBody ProdutoDTO produtoDTO) {
         try {
             Optional<ProdutoModel> produtos = produtoService.pesquisarProduto(produtoDTO);
@@ -41,14 +48,5 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-    @GetMapping("/listar")
-    public ResponseEntity<List<ProdutoModel>> listarProdutos() {
-        try {
-            List<ProdutoModel> produtos = produtoService.listarProdutos();
-            return ResponseEntity.ok(produtos);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 }
+

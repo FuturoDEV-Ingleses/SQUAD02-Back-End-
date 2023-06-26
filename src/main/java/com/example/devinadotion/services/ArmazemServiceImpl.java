@@ -22,6 +22,11 @@ public class ArmazemServiceImpl implements ArmazemService {
     }
 
     @Override
+    public List<ArmazemModel> buscarTodos() {
+        return armazemRepository.findAll();
+    }
+
+    @Override
     public ArmazemModel cadastrarArmazem(ArmazemDTO armazemDTO) {
         ArmazemModel armazem = new ArmazemModel();
         armazem.setNome(armazemDTO.getNome());
@@ -44,6 +49,7 @@ public class ArmazemServiceImpl implements ArmazemService {
 
         return armazemRepository.save(armazem);
     }
+
     public void desativar(Long id) throws Exception {
         Optional<ArmazemModel> optionalArmazem = armazemRepository.findById(id);
         ArmazemModel armazem = optionalArmazem.orElseThrow(() -> new Exception("Armazém não encontrado."));

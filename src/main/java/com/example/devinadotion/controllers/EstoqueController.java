@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 @RestController
 @RequestMapping(value = "/estoque", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EstoqueController {
@@ -35,22 +37,22 @@ public class EstoqueController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<String> editar(@PathVariable Long id, @RequestBody EstoqueDTO estoqueDTO) {
+    public ResponseEntity<EstoqueModel> editar(@PathVariable Long id, @RequestBody EstoqueDTO estoqueDTO) {
         try {
             EstoqueModel estoque = estoqueService.editar(id, estoqueDTO);
-            return ResponseEntity.ok(String.valueOf(estoque));
+            return (ResponseEntity<EstoqueModel>) ResponseEntity.ok();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return (ResponseEntity<EstoqueModel>) ResponseEntity.status(NOT_FOUND);
         }
     }
 
     @DeleteMapping("/remover")
-    public ResponseEntity<String> remover(@PathVariable Long id) {
+    public ResponseEntity<EstoqueModel> remover(@PathVariable Long id) {
         try {
             estoqueService.remover(id);
-            return ResponseEntity.ok().build();
+            return (ResponseEntity<EstoqueModel>) ResponseEntity.ok();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
     @PostMapping("/cadastrar")

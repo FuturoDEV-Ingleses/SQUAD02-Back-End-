@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -17,8 +19,12 @@ public class ArmazemController {
     public ArmazemController(ArmazemService armazemService) {
         this.armazemService = armazemService;
     }
+    @GetMapping
+    public List<ArmazemModel> get() {
+        return armazemService.buscarTodos();
+    }
 
-   @PostMapping("/")
+   @PostMapping("{id}")
    public ResponseEntity<ArmazemModel> cadastrarArmazem(@RequestBody ArmazemDTO armazemDTO) {
        ArmazemModel armazemModel = armazemService.cadastrarArmazem(armazemDTO);
        return ResponseEntity.ok(armazemModel);

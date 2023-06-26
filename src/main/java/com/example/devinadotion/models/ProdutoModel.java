@@ -13,15 +13,15 @@ public class ProdutoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Animal animal;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Categoria categoria;
+    @Column(length = 8, nullable = false)
+    private String animal;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TipoProduto tipo;
+
+    @Column(length = 7, nullable = false)
+    private String categoria;
+
+
+    @Column(length = 15, nullable = false)
+    private String tipo;
 }
