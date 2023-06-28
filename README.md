@@ -1,4 +1,4 @@
-# Squad02-FrontEnd
+# Squad02-Back-End
 Projeto Avaliativo Senai-Lab365.
 ## Sobre o projeto
 Aplicação para controle de estoque de materiais para ongs, desenvolvido em grupo.
@@ -34,7 +34,8 @@ Aplicação para controle de estoque de materiais para ongs, desenvolvido em gru
 ## Estrutura do projeto
 
 ## Modelagem do Banco de dados 
-![Devinadotion](https://github.com/FuturoDEV-Ingleses/SQUAD02-Back-End-/assets/118769908/f9e7cf66-7f01-4bce-9511-eeab3bfd4f18)
+<img width="464" alt="Devin-adoptionTabelas" src="https://github.com/FuturoDEV-Ingleses/SQUAD02-Back-End-/assets/118769908/b8a854f2-c400-4200-a2af-46b6afafc4dd">
+
 
 
 ## Integrantes da Squad02
