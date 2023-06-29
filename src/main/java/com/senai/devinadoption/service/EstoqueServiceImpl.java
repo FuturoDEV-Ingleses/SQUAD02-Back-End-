@@ -26,10 +26,12 @@ public class EstoqueServiceImpl implements EstoqueService {
         this.estoqueRepository = estoqueRepository;
         this.armazemRepository = armazemRepository;
     }
+
     @Override
     public List<Estoque> buscarTodos() {
         return estoqueRepository.findAll();
     }
+
     @Override
     public Estoque cadastrarProdutoEmEstoque(EstoqueDTO estoqueDTO) throws Exception {
         Armazem armazem = armazemRepository.findById(estoqueDTO.getArmazemId())
@@ -58,27 +60,6 @@ public class EstoqueServiceImpl implements EstoqueService {
 
         return estoqueRepository.save(estoque);
     }
-    @Override
-    public Estoque editar(Long id, EstoqueDTO estoqueDTO) throws Exception {
-        Estoque estoque = estoqueRepository.findById(id)
-                .orElseThrow(() -> new Exception("Item do estoque não encontrado"));
-
-        Armazem armazem = estoque.getArmazem();
-        Animal animal = estoqueDTO.getAnimal();
-
-        if (!armazemAceitaProduto(armazem, animal)) {
-            throw new Exception("O armazém não aceita produtos desse animal");
-        }
-
-        estoque.setProduto(estoqueDTO.getProduto());
-        estoque.setQuantidade(estoqueDTO.getQuantidade());
-
-        return estoqueRepository.save(estoque);
-    }
-
-    private boolean armazemAceitaProduto(Armazem armazem, Animal animal) {
-        return armazem.getAnimal().equals(animal);
-    }
 
     @Override
     public List<EstoqueDTO> listarEstoque() {
@@ -100,6 +81,27 @@ public class EstoqueServiceImpl implements EstoqueService {
 
         return estoqueDTOList;
     }
+
+    @Override
+    public Estoque editar(Long id, EstoqueDTO estoqueDTO) throws Exception {
+        Estoque estoque = estoqueRepository.findById(id)
+                .orElseThrow(() -> new Exception("Item do estoque não encontrado"));
+
+        Armazem armazem = estoque.getArmazem();
+        Animal animal = estoqueDTO.getAnimal();
+
+        if (!armazemAceitaProduto(armazem, animal)) {
+            throw new Exception("O armazém não aceita produtos desse animal");
+        }
+
+        estoque.setProduto(estoqueDTO.getProduto());
+        estoque.setQuantidade(estoqueDTO.getQuantidade());
+
+        return estoqueRepository.save(estoque);
+    }
+     private boolean armazemAceitaProduto(Armazem armazem, Animal animal) {
+        return armazem.getAnimal().equals(animal);
+    }
     @Override
     public void removerItem(Long itemId) throws Exception {
         Optional<Estoque> optionalEstoque = estoqueRepository.findById(itemId);
@@ -111,7 +113,8 @@ public class EstoqueServiceImpl implements EstoqueService {
         }
     }
     @Override
-    public List<DashboardDTO> dashboard() throws Exception {
-        return estoqueRepository.dashboard();
+    public List<DashboardDTO> listarRelatorioEstoque() throws Exception {
+        List<DashboardDTO> estoque = estoqueRepository.gerarRelatorioEstoque();
+        return estoque;
     }
 }

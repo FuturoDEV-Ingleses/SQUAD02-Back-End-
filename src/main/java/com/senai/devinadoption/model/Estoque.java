@@ -14,7 +14,6 @@ public class Estoque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "armazem_id", nullable = false)
     private Armazem armazem;
