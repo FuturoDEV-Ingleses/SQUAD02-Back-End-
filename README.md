@@ -31,6 +31,27 @@ Aplicação para controle de estoque de materiais para ongs, desenvolvido em gru
 4. Spring Boot DevTools
 5. Lombock
 
+## Endpoints
+Usuario :
+POST  http://localhost:8080/usuario/cadastro
+POST  http://localhost:8080/usuario/login
+Armazem
+GET http://localhost:8080/armazem/ar  
+POST http://localhost:8080/armazem/cadastrar
+PUT http://localhost:8080/armazem/editar/{Id}
+PUT http://localhost:8080/armazem/desativar/{Id}
+
+Estoque
+
+GET  http://localhost:8080/estoque/listar
+POST http://localhost:8080/estoque/cadastrar
+PUT http://localhost:8080/estoque/editar/{id}
+
+Dashboard
+
+GET http://localhost:8080/dashboard/relatorio
+
+
 ## Estrutura do projeto
 
 ## Modelagem do Banco de dados 
